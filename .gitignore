@@ -1,0 +1,19 @@
+# ===== PHP =====
+php-carrito/vendor/
+*.log
+
+# ===== ASP.NET Core =====
+aspnet-carrito/**/bin/
+aspnet-carrito/**/obj/
+aspnet-carrito/**/.vs/
+*.user
+
+# ===== Java / Spring Boot / Maven =====
+spring-carrito/**/target/
+spring-carrito/**/.mvn/
+spring-carrito/**/*.class
+
+# ===== General / Sistema Operativo =====
+.DS_Store
+Thumbs.db
+*.swp
