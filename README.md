@@ -15,6 +15,7 @@ Un carrito de compras mínimo con tres operaciones sobre una sesión del servido
 
 ## Estructura del repositorio
 
+```
 gestion-estado-sesiones-carrito-compras/
 ├── php-carrito/          # PHP 8 con $_SESSION
 ├── aspnet-carrito/        # ASP.NET Core 8 con ISession
@@ -24,49 +25,53 @@ gestion-estado-sesiones-carrito-compras/
 │   └── capturas/                       # Capturas de pantalla y DevTools
 ├── .gitignore
 └── README.md
+```
 
 ## Instrucciones de ejecución
 
 ### PHP 8
 
 1. Servir la carpeta `php-carrito/` con Apache (XAMPP) o Docker:
-
-docker run -d -p 8080:80 php:8.2-apache
-
+```
+   docker run -d -p 8080:80 php:8.2-apache
+```
 2. Abrir en el navegador:
+```
+   http://localhost/carrito/index.php
+```
 
-http://localhost/carrito/index.php
-
-> Nota: el flag `Secure` de la cookie está comentado en `configuracion.php` para permitir pruebas en `http://localhost` sin HTTPS. En producción debe activarse.
+> **Nota:** en `php-carrito/configuracion.php` la línea `ini_set('session.cookie_secure', '1')` está **comentada intencionalmente**. Esta línea obliga a que la cookie de sesión solo se envíe por HTTPS; como las pruebas locales se hicieron en `http://localhost` (sin certificado SSL), dejarla activa habría impedido que el carrito persistiera entre páginas. En un entorno de producción con HTTPS, esa línea debe descomentarse.
 
 ### ASP.NET Core 8
 
 1. Entrar a la carpeta del proyecto:
-
-cd aspnet-carrito
-
-2. El archivo `global.json` fija el SDK en la versión 8, aunque el equipo tenga instalada una versión más reciente.
-3. Ejecutar con el perfil HTTPS (necesario porque la cookie de sesión exige `Secure`):
-
-dotnet run --launch-profile https
-
+```
+   cd aspnet-carrito
+```
+2. El archivo `global.json` fija el SDK en la versión 8, aunque el equipo tenga instalada una versión más reciente (en este caso, .NET 10 convive con .NET 8 en la misma máquina).
+3. Ejecutar con el perfil HTTPS (necesario porque aquí la cookie de sesión sí exige `Secure` de forma activa):
+```
+   dotnet run --launch-profile https
+```
 4. Abrir en el navegador la URL HTTPS que muestre la terminal, agregando `/Carrito`, por ejemplo:
-
-https://localhost:7074/Carrito
+```
+   https://localhost:7074/Carrito
+```
 
 ### Java / Spring Boot 3
 
 1. Entrar a la carpeta del proyecto:
-
-cd spring-carrito
-
+```
+   cd spring-carrito
+```
 2. Ejecutar con el Maven Wrapper (no requiere tener Maven instalado globalmente):
-
-./mvnw spring-boot:run
-
+```
+   ./mvnw spring-boot:run
+```
 3. Abrir en el navegador:
-
-http://localhost:8080/carrito
+```
+   http://localhost:8080/carrito
+```
 
 ## Flags de seguridad de cookies verificados
 
